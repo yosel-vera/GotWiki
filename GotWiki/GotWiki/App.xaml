@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GotWiki.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#986d41</Color>
+            <Color x:Key="Primary">#986d41</Color>
+            <Color x:Key="Shadow">#585858</Color>
+            <Color x:Key="TextPrimary">#EEE5EEF0</Color>
+            <Color x:Key="BackgroundColor">#9C151415</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <OnPlatform x:Key="DroptheGame" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Drop the Game.ttf#Drop the Game" />
+                <On Platform="iOS" Value="Drop the Game" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="GilroySemiBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Gilroy-SemiBold.otf#Gilroy SemiBold" />
+                <On Platform="iOS" Value="Gilroy SemiBold" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="GilroySemiBoldItalic" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Gilroy-SemiBoldItalic.otf#Gilroy SemiBold Italic" />
+                <On Platform="iOS" Value="Gilroy SemiBold Italic" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

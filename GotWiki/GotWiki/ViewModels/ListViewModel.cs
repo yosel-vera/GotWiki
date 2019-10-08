@@ -1,0 +1,69 @@
+﻿using GotWiki.Services;
+using MvvmHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace GotWiki.ViewModels
+{
+    public class ListViewModel<T> : BaseViewModel 
+    {
+        private ObservableRangeCollection<T> entities;
+        private int _currentPage;
+        private bool _canLoadMore;
+        private string _entityName => typeof(T).Name;
+
+        public ObservableRangeCollection<T> Entities
+        {
+            get { return entities; }
+            set
+            {
+                entities = value;
+                OnPropertyChanged(nameof(Entities));
+            }
+        }
+
+        public ListViewModel(IDataStore dataStore, INavigationService navigationService)
+            : base(dataStore, navigationService)
+        {
+            Title = _entityName;
+            entities = new ObservableRangeCollection<T>();
+            _canLoadMore = true;
+            _currentPage = 1;
+        }
+
+        public override async Task InitializeAsync(object parameter)
+        {
+            await LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
+            IsBusy = true;
+            var data = await _dataStore.GetItemsAsync<T>(_entityName, _currentPage);
+            if (data.Count() > 0)
+            {
+                _currentPage++;
+                Entities.AddRange(data);
+            }
+            else
+                _canLoadMore = false;
+            IsBusy = false;
+        }
+
+        public ICommand ItemAppearingCommand => new Command<T>(async (item) => await OnAppearingCommand(item));
+
+        private async Task OnAppearingCommand(T item)
+        {
+            var index = Entities.IndexOf(item);
+            if (Entities.Count - 2 == index && _canLoadMore)
+            {
+                await LoadDataAsync();
+            }
+        }
+    }
+}

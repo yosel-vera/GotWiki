@@ -1,4 +1,5 @@
-﻿using GotWiki.Services;
+﻿using GotWiki.Models;
+using GotWiki.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace GotWiki.ViewModels
 {
-    public class ResourceListViewModel : BaseViewModel
+    public class HousesViewModel : ListViewModel<Houses>
     {
-        public ResourceListViewModel(INavigationService navigationService, IDataStore dataStore)
+        public HousesViewModel(INavigationService navigationService, IDataStore dataStore)
             : base(dataStore, navigationService)
-        { 
+        {
         }
 
         public override Task InitializeAsync(object parameter)
         {
-            Title = parameter.ToString();
             return base.InitializeAsync(parameter);
         }
     }

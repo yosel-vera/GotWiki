@@ -7,6 +7,8 @@ using System.Windows.Input;
 using System.Linq;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using GotWiki.Models;
+using System;
 
 namespace GotWiki.ViewModels
 {
@@ -21,7 +23,18 @@ namespace GotWiki.ViewModels
 
         private Task NavigateAsync(string resource)
         {
-            return _navigationService.NavigateToAsync<ResourceListViewModel>(resource);
+            ResourceType type = (ResourceType)Enum.Parse(typeof(ResourceType), resource);
+            switch (type)
+            {
+                case ResourceType.Books:
+                    return _navigationService.NavigateToAsync<BooksViewModel>();
+                case ResourceType.Houses:
+                    return _navigationService.NavigateToAsync<HousesViewModel>();
+                case ResourceType.Characters:
+                    return Task.FromResult(true);
+                default:
+                    return Task.FromResult(true);
+            }
         }
 
 

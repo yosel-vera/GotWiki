@@ -11,15 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace GotWiki.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ResourceListView : ContentPage
+    public partial class HousesView : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
 
-        public ResourceListView(ResourceListViewModel viewModel = null)
+        public HousesView(HousesViewModel viewModel = null)
         {
             InitializeComponent();
             BindingContext = viewModel;
         }
-
     }
 }

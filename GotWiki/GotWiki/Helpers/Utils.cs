@@ -8,6 +8,7 @@ namespace GotWiki.Helpers
 {
     public static class Utils
     {
+
         public static void ExtractSaveResource(string filename, string location)
         {
             var assembly = Assembly.GetExecutingAssembly();

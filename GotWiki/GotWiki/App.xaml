@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#986d41</Color>
+            <Color x:Key="NavigationPrimary">#ED352C2B</Color>
             <Color x:Key="Primary">#986d41</Color>
             <Color x:Key="Shadow">#585858</Color>
             <Color x:Key="TextPrimary">#EEE5EEF0</Color>

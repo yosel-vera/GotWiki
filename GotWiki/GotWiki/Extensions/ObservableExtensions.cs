@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -12,5 +13,12 @@ namespace System.Linq
             ObservableCollection<T> collection = new ObservableCollection<T>(source);
             return collection;
         }
+
+        public static ObservableRangeCollection<T> ToObservableRangeCollection<T>(this IEnumerable<T> source)
+        {
+            ObservableRangeCollection<T> collection = new ObservableRangeCollection<T>(source);
+            return collection;
+        }
+
     }
 }

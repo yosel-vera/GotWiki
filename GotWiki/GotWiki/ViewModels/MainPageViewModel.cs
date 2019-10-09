@@ -31,7 +31,7 @@ namespace GotWiki.ViewModels
                 case ResourceType.Houses:
                     return _navigationService.NavigateToAsync<HousesViewModel>();
                 case ResourceType.Characters:
-                    return Task.FromResult(true);
+                    return _navigationService.NavigateToAsync<CharactersViewModel>();
                 default:
                     return Task.FromResult(true);
             }

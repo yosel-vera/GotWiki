@@ -8,7 +8,6 @@ namespace GotWiki.Services
 {
     public interface INavigationService
     {
-        BaseViewModel PreviousPageViewModel { get; }
         Task InitializeAsync();
         Task NavigateToAsync(Type viewModelType, object parameter = null);
         Task NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel;

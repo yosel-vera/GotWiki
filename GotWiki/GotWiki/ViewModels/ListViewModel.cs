@@ -39,9 +39,10 @@ namespace GotWiki.ViewModels
         public override async Task InitializeAsync(object parameter)
         {
             await LoadDataAsync();
+            await base.InitializeAsync(parameter);
         }
 
-        public async Task LoadDataAsync()
+        protected async virtual Task LoadDataAsync()
         {
             IsBusy = true;
             var data = await _dataStore.GetItemsAsync<T>(_entityName, _currentPage);
@@ -57,7 +58,7 @@ namespace GotWiki.ViewModels
 
         public ICommand ItemAppearingCommand => new Command<T>(async (item) => await OnAppearingCommand(item));
 
-        private async Task OnAppearingCommand(T item)
+        protected async virtual Task OnAppearingCommand(T item)
         {
             var index = Entities.IndexOf(item);
             if (Entities.Count - 2 == index && _canLoadMore)

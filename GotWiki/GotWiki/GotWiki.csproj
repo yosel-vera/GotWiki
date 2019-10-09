@@ -25,13 +25,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Templates\BookItemTemplate.xaml.cs">
+      <DependentUpon>BookItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\HouseItemTemplate.xaml.cs">
+      <DependentUpon>HouseItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Templates\BookItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Templates\CharacterItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Templates\HouseItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BooksView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CharactersView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HousesView.xaml">
@@ -40,9 +58,5 @@
     <EmbeddedResource Update="Views\TestView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Templates\" />
   </ItemGroup>
 </Project>

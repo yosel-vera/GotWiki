@@ -29,10 +29,31 @@
                 <On Platform="iOS" Value="Gilroy SemiBold" />
             </OnPlatform>
 
+            <OnPlatform x:Key="GilroyMedium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Gilroy-Medium.otf#Gilroy Medium" />
+                <On Platform="iOS" Value="Gilroy Medium" />
+            </OnPlatform>
+
             <OnPlatform x:Key="GilroySemiBoldItalic" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Gilroy-SemiBoldItalic.otf#Gilroy SemiBold Italic" />
                 <On Platform="iOS" Value="Gilroy SemiBold Italic" />
             </OnPlatform>
+
+            <Style TargetType="ListView" x:Key="BaseListStyle">
+                <Setter Property="HasUnevenRows" Value="True"/>
+                <Setter Property="RefreshControlColor" Value="{StaticResource NavigationPrimary}"/>
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="BaseLabelStyle">
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="TextColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="FontFamily" Value="{StaticResource GilroyMedium}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="SubtitleLabel" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontSize" Value="Caption" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
     

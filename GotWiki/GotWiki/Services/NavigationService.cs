@@ -11,7 +11,6 @@ namespace GotWiki.Services
 {
     public class NavigationService : INavigationService
     {
-        public BaseViewModel PreviousPageViewModel => throw new NotImplementedException();
 
         public Task InitializeAsync()
         {
@@ -28,14 +27,33 @@ namespace GotWiki.Services
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
         }
 
-        public Task RemoveBackStackAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public Task RemoveLastFromBackStackAsync()
         {
-            throw new NotImplementedException();
+            var mainPage = Application.Current.MainPage as NavigationPage;
+
+            if (mainPage != null)
+            {
+                mainPage.Navigation.RemovePage(
+                    mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 2]);
+            }
+
+            return Task.FromResult(true);
+        }
+
+        public Task RemoveBackStackAsync()
+        {
+            var mainPage = Application.Current.MainPage as NavigationPage;
+
+            if (mainPage != null)
+            {
+                for (int i = 0; i < mainPage.Navigation.NavigationStack.Count - 1; i++)
+                {
+                    var page = mainPage.Navigation.NavigationStack[i];
+                    mainPage.Navigation.RemovePage(page);
+                }
+            }
+
+            return Task.FromResult(true);
         }
 
         private async Task InternalNavigateToAsync(Type viewModelType, object parameter)

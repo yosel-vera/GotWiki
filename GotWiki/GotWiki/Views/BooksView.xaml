@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:GotWiki.Converters"
              xmlns:behaviors="clr-namespace:GotWiki.Behaviors"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
              Title="{Binding Title}"
              mc:Ignorable="d"
              x:Class="GotWiki.Views.BooksView">
@@ -13,8 +14,8 @@
             <converters:ItemVisibilityEventArgsConverter x:Key="ItemVisibilityEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-  <ListView ItemsSource="{Binding Entities}" CachingStrategy="RecycleElement"
-            IsRefreshing="{Binding IsBusy}" RefreshControlColor="{StaticResource NavigationPrimary}">
+  <ListView ItemsSource="{Binding Entities}" Style="{StaticResource BaseListStyle}"
+            IsRefreshing="{Binding IsBusy}" SelectionMode="None">
         <ListView.Behaviors>
             <behaviors:EventToCommandBehavior EventName="ItemAppearing"
                                               EventArgsConverter="{StaticResource ItemVisibilityEventArgsConverter}"
@@ -22,8 +23,10 @@
         </ListView.Behaviors>
     <ListView.ItemTemplate>
         <DataTemplate>
-            <TextCell Text="{Binding Name}"/>
-        </DataTemplate>
+                <ViewCell>
+                    <templates:BookItemTemplate BindingContext="{Binding .}"/>
+                </ViewCell>
+            </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
 </ContentPage>

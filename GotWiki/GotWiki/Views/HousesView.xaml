@@ -5,15 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:GotWiki.Converters"
              xmlns:behaviors="clr-namespace:GotWiki.Behaviors"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
              mc:Ignorable="d"
+             Title="{Binding Title}"
              x:Class="GotWiki.Views.HousesView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ItemVisibilityEventArgsConverter x:Key="ItemVisibilityEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-  <ListView ItemsSource="{Binding Entities}" IsRefreshing="{Binding IsBusy}"
-            CachingStrategy="RecycleElement" RefreshControlColor="{StaticResource NavigationPrimary}">
+  <ListView ItemsSource="{Binding Entities}" Style="{StaticResource BaseListStyle}"
+            CachingStrategy="RecycleElement" IsRefreshing="{Binding IsBusy}" SelectionMode="None">
         <ListView.Behaviors>
             <behaviors:EventToCommandBehavior EventName="ItemAppearing" 
                                               EventArgsConverter="{StaticResource ItemVisibilityEventArgsConverter}"
@@ -21,9 +23,11 @@
         </ListView.Behaviors>
     <!--Built in Cells-->
     <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding Name}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <templates:HouseItemTemplate BindingContext="{Binding .}"/>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
   </ListView>
 </ContentPage>

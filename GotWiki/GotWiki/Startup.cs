@@ -62,9 +62,16 @@ namespace GotWiki
             services.AddTransient<BooksView>();
             services.AddTransient<HousesView>();
             services.AddTransient<CharactersView>();
-           services.AddTransient<CharactersViewModel>();
+            services.AddTransient<CharactersViewModel>();
 
+            services.AddTransient<HouseDetailsView>();
+            services.AddTransient<HouseDetailsViewModel>();
 
+            services.AddTransient<CharacterDetailsView>();
+            services.AddTransient<CharacterDetailsViewModel>();
+
+            services.AddTransient<BookDetailsView>();
+            services.AddTransient<BookDetailsViewModel>();
             services.AddTransient<IDataStore,DataStore>();
             services.AddSingleton<INavigationService, NavigationService>();
 

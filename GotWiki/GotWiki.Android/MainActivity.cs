@@ -10,7 +10,7 @@ using GotWiki;
 
 namespace GotWiki.Droid
 {
-    [Activity(Label = "GotWiki", Icon = "@mipmap/icon", Theme = "@style/MainTheme", 
+    [Activity(Label = "GotWiki", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -20,7 +20,6 @@ namespace GotWiki.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(Startup.Init());

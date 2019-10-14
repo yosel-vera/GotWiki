@@ -2,7 +2,9 @@
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,7 +17,7 @@ namespace GotWiki.ViewModels
         private ObservableRangeCollection<T> entities;
         private int _currentPage;
         private bool _canLoadMore;
-        private string _entityName => typeof(T).Name;
+        private string _entityName => $"{typeof(T).Name}s";
 
         public ObservableRangeCollection<T> Entities
         {
@@ -65,6 +67,18 @@ namespace GotWiki.ViewModels
             {
                 await LoadDataAsync();
             }
+        }
+
+        public ICommand SelectItemCommand => new Command<T>(async (item) => await OnSelectItemCommand(item));
+
+        protected virtual Task OnSelectItemCommand(T item)
+        {
+            var viewModelName = item.GetType().FullName.Replace("Model", "ViewModel");
+            viewModelName += "DetailsViewModel";
+            var entityAssembly = item.GetType().GetTypeInfo().Assembly.FullName;
+            var viewModelAssemblyName = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", viewModelName, entityAssembly);
+            var viewModelType = Type.GetType(viewModelAssemblyName);
+            return _navigationService.NavigateToAsync(viewModelType, item);
         }
     }
 }

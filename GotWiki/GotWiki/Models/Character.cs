@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GotWiki.Models
 {
-    public class Characters
+    public class Character
     {
         public string Name { get; set; }
         public IEnumerable<string> Aliases { get; set; }
@@ -12,5 +12,7 @@ namespace GotWiki.Models
         public string Born { get; set; }
         public string Died { get; set; }
         public string Culture { get; set; }
+
+        public string Gender { get; set; }
     }
 }

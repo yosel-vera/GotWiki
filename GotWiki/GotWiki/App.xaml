@@ -3,11 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:GotWiki.Converters"
              mc:Ignorable="d"
              x:Class="GotWiki.App">
 
     <Application.Resources>
         <ResourceDictionary>
+            <converters:EmptyStringToBooleanConverter x:Key="EmptyStringToBooleanConverter"/>
+            <converters:ItemVisibilityEventArgsConverter x:Key="ItemVisibilityEventArgsConverter" />
+            <converters:StringEnumerableEmptyToBooleanConverter x:Key="StringEnumerableEmptyToBooleanConverter"/>
+            <converters:CharacterNameConverter x:Key="CharacterNameConverter" />
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#ED352C2B</Color>
             <Color x:Key="Primary">#986d41</Color>
@@ -53,6 +58,10 @@
 
             <Style TargetType="Label" x:Key="SubtitleLabel" BasedOn="{StaticResource BaseLabelStyle}">
                 <Setter Property="FontSize" Value="Caption" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="BodyLabel" BasedOn="{StaticResource BaseLabelStyle}">
+                <Setter Property="FontSize" Value="Body" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

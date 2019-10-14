@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="GotWiki.Views.HouseDetailsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout" x:Key="LayoutStyle">
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="game_of_thrones_houses_sigil" VerticalOptions="StartAndExpand"/>
+                <StackLayout Padding="15" Spacing="20" Grid.Row="1">
+                    <StackLayout IsVisible="{Binding House.CoatOfArms,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Coat of Arms:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding House.CoatOfArms}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.Words,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Words:"/>
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding House.Words}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.Region,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Region:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding House.Region}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.Founded,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Founded:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding House.Founded}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.Titles,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Titles:" />
+                        <templates:EnumerableStringTemplate Items="{Binding House.Titles}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.Seats,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Seats:" />
+                        <templates:EnumerableStringTemplate Items="{Binding House.Seats}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding House.AncestralWeapons,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Ancestral Weapons:" />
+                        <templates:EnumerableStringTemplate Items="{Binding House.AncestralWeapons}" />
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,13 +9,9 @@
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Class="GotWiki.Views.HousesView">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:ItemVisibilityEventArgsConverter x:Key="ItemVisibilityEventArgsConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
   <ListView ItemsSource="{Binding Entities}" Style="{StaticResource BaseListStyle}"
-            CachingStrategy="RecycleElement" IsRefreshing="{Binding IsBusy}" SelectionMode="None">
+            CachingStrategy="RecycleElement" IsRefreshing="{Binding IsBusy}" SelectionMode="None"
+            behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding SelectItemCommand}">
         <ListView.Behaviors>
             <behaviors:EventToCommandBehavior EventName="ItemAppearing" 
                                               EventArgsConverter="{StaticResource ItemVisibilityEventArgsConverter}"

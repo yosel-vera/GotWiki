@@ -13,7 +13,7 @@ using MvvmHelpers;
 
 namespace GotWiki.ViewModels
 {
-    public class BooksViewModel : ListViewModel<Books>
+    public class BooksViewModel : ListViewModel<Book>
     {
         public BooksViewModel(INavigationService navigationService, IDataStore dataStore)
             : base(dataStore, navigationService)

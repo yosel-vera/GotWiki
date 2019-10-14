@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
           <Label Grid.Row="0" Text="{Binding Name}" Style="{StaticResource BaseLabelStyle}"/>
           <Label Grid.Row="1" Text="{Binding Publisher,StringFormat='Publisher: {0:F2}'}" 
-                 Style="{StaticResource SubtitleLabel}"/>
+                 Style="{StaticResource SubtitleLabel}" IsVisible="{Binding Publisher,Converter={StaticResource EmptyStringToBooleanConverter}}"/>
           <Image Source="ic_navigate_next_custom_24dp" Grid.Row="0" Grid.RowSpan="2"
                    HorizontalOptions="End" VerticalOptions="Center" Opacity="0.4"/>
         </Grid>

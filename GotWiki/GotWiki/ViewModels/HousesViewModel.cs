@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GotWiki.ViewModels
 {
-    public class HousesViewModel : ListViewModel<Houses>
+    public class HousesViewModel : ListViewModel<House>
     {
         public HousesViewModel(INavigationService navigationService, IDataStore dataStore)
             : base(dataStore, navigationService)

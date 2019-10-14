@@ -1,5 +1,4 @@
-﻿using GotWiki.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -7,19 +6,17 @@ using Xamarin.Forms;
 using System.Linq;
 namespace GotWiki.Converters
 {
-    public class CharacterNameConverter : IValueConverter
+    public class StringEnumerableEmptyToBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var character = (Character)value;
             if (value != null)
             {
-                var name = string.IsNullOrEmpty(character.Name)
-                    ? character.Aliases?.FirstOrDefault() : character.Name;
-                return name;
+                var list = (IEnumerable<string>)value;
+                return list.Count() > 0 && !string.IsNullOrEmpty(list.ElementAt(0));
             }
             else
-                return string.Empty;
+                return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -28,3 +25,4 @@ namespace GotWiki.Converters
         }
     }
 }
+

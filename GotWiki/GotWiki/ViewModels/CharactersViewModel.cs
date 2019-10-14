@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GotWiki.ViewModels
 {
-    public class CharactersViewModel : ListViewModel<Characters>
+    public class CharactersViewModel : ListViewModel<Character>
     {
         public CharactersViewModel(IDataStore dataStore, INavigationService navigationService)
             : base(dataStore, navigationService)

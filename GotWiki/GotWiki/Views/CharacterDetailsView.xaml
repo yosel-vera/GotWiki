@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
+             xmlns:converters="clr-namespace:GotWiki.Converters"
+             Title="{Binding Character,Converter={StaticResource CharacterNameConverter}}"
+             mc:Ignorable="d"
+             x:Class="GotWiki.Views.CharacterDetailsView">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="game_of_thrones_characters" VerticalOptions="StartAndExpand"/>
+                <StackLayout Padding="15" Spacing="20" Grid.Row="1">
+                    <StackLayout IsVisible="{Binding Character.Aliases,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Aliases:" />
+                        <templates:EnumerableStringTemplate Items="{Binding Character.Aliases}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Character.Culture,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Culture:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Character.Culture}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Character.Gender,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Gender:"/>
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Character.Gender}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Character.Born,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Born:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Character.Born}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Character.Died,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Died:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Character.Died}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Character.Titles,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Titles:" />
+                        <templates:EnumerableStringTemplate Items="{Binding Character.Titles}" />
+                    </StackLayout>
+                    
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

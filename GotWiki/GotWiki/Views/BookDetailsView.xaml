@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
+             mc:Ignorable="d"
+             Title="{Binding Book.Name}"
+             x:Class="GotWiki.Views.BookDetailsView">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="books"/>
+                <StackLayout Padding="15" Spacing="20" Grid.Row="1">
+                    <StackLayout IsVisible="{Binding Book.Authors,Converter={StaticResource StringEnumerableEmptyToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Authors:" />
+                        <templates:EnumerableStringTemplate Items="{Binding Book.Authors}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Book.ISBN,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="ISBN:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Book.ISBN}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Book.NumberOfPages}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Number of pages:"/>
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Book.NumberOfPages}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Book.Released}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Released:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Book.Released,StringFormat='{0:MMMM dd, yyyy}'}" />
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Book.Country,Converter={StaticResource EmptyStringToBooleanConverter}}">
+                        <Label Style="{StaticResource SubtitleLabel}" Text="Country:" />
+                        <Label Style="{StaticResource BodyLabel}" Text="{Binding Book.Country}" />
+                    </StackLayout>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

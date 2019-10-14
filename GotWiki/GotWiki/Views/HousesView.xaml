@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:GotWiki.Converters"
+             xmlns:behaviors="clr-namespace:GotWiki.Behaviors"
+             xmlns:templates="clr-namespace:GotWiki.Templates"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="GotWiki.Views.HousesView">
+  <ListView ItemsSource="{Binding Entities}" Style="{StaticResource BaseListStyle}"
+            CachingStrategy="RecycleElement" IsRefreshing="{Binding IsBusy}" SelectionMode="None"
+            behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding SelectItemCommand}">
+        <ListView.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="ItemAppearing" 
+                                              EventArgsConverter="{StaticResource ItemVisibilityEventArgsConverter}"
+                                              Command="{Binding ItemAppearingCommand}"/>
+        </ListView.Behaviors>
+    <!--Built in Cells-->
+    <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <templates:HouseItemTemplate BindingContext="{Binding .}"/>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>

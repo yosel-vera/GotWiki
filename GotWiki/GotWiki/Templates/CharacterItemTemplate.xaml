@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:GotWiki.Converters"
+             mc:Ignorable="d"
+             x:Class="GotWiki.Templates.CharacterItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:CharacterNameConverter x:Key="CharacterNameConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Grid Padding="15,8,8,8">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>-->
+            <StackLayout>
+                <Label Text="{Binding .,Converter={StaticResource CharacterNameConverter}}" Style="{StaticResource BaseLabelStyle}"/>
+                <Label Text="{Binding Gender,StringFormat='Gender: {0:F2}'}" 
+                       Style="{StaticResource SubtitleLabel}" IsVisible="{Binding Gender,Converter={StaticResource EmptyStringToBooleanConverter}}"/>
+            </StackLayout>
+            <Image Source="ic_navigate_next_custom_24dp" HorizontalOptions="End" 
+                   VerticalOptions="Center" Opacity="0.4"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
